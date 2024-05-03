@@ -1,0 +1,20 @@
+{
+  "name": "configurator",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "three": "^0.164.0"
+  },
+  "dependencies": {
+    "vite": "^5.1.4"
+  },
+  "description": "",
+  "homepage": "https://aleksandravranjevac.github.io/cookies/"
+}

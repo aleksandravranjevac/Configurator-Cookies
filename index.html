@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Cookies 3D Configurator</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three/build/three.module.js",
+          "three/": "https://unpkg.com/three/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- <div id="canvas"></div> -->
+    <script type="module" src="./js/index.js"></script>
+
+    <div class="options-menu">
+      <div class="option-container">
+        <h2>Title</h2>
+        <hr />
+        <div class="options"></div>
+        <hr />
+        <h3>Accessories</h3>
+        <div class="accessory-options"></div>
+        <div class="option-name">Option Name</div>
+      </div>
+
+      <div class="top raycaster">Top</div>
+      <div class="base raycaster">Base</div>
+      <div class="leftArm raycaster">Left Arm</div>
+      <div class="rightArm raycaster">Right Arm</div>
+    </div>
+
+    <script type="module">
+      import Cookies from "./js/Cookies.js";
+
+      let cookie = new Cookies("#canvas");
+      window.cookies = cookie;
+    </script>
+
+    <input type="file" id="fileInput" style="display: none" />
+    <button style="position: absolute; right: 0" onclick="openFileExplorer()">
+      Upload GLB File
+    </button>
+    <script>
+      function openFileExplorer() {
+        document.getElementById("fileInput").click();
+      }
+
+      document
+        .getElementById("fileInput")
+        .addEventListener("change", async function () {
+          let file = this.files[0];
+          if (file) {
+            window.cookiesGLTF = file;
+            let url = URL.createObjectURL(file);
+            window.cookiesURL = url;
+
+            await cookies.loadGLTF(url);
+            cookies.switchOptions("Pot", "base");
+            cookies.switchOptions("Flower Top", "top");
+            cookies.switchOptions("No Arm", "leftArm");
+            cookies.switchOptions("No Arm", "rightArm");
+          }
+        });
+    </script>
+  </body>
+</html>
