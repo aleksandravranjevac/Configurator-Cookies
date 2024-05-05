@@ -161,7 +161,7 @@ export default class Cookies {
     this.activePart = activePart;
 
     this.selectedOption = this.cactusData[this.activePart].find(
-      (o) => o.name === option
+      (o) => o.id === option
     );
 
     if (this.activePart) {

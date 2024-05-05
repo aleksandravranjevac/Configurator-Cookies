@@ -39,7 +39,10 @@ function createAccessoryDivs(active) {
   });
 
   // have accessories
-  let activeAccessory;
+  let activeAccessory = { name: "No Accessory" };
+  let accessoryButtons = document.querySelectorAll(
+    ".accessory-options .option"
+  );
   if (accessories)
     accessories.forEach((acc) => {
       let option = document.createElement("div");
@@ -48,9 +51,19 @@ function createAccessoryDivs(active) {
       accessoriesDiv.append(option);
 
       option.addEventListener("click", () => {
-        activeAccessory = acc.name;
+        activeAccessory = acc;
 
-        cookies.switchAccessories(activeAccessory);
+        cookies.switchAccessories(activeAccessory.name);
+        accessoryName.innerHTML = activeAccessory.name;
+
+        // option.classList.add("active");
+      });
+
+      option.addEventListener("mouseover", () => {
+        accessoryName.innerHTML = acc.name;
+      });
+      option.addEventListener("mouseout", () => {
+        accessoryName.innerHTML = activeAccessory.name;
       });
     });
 }
